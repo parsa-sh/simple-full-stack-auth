@@ -1,0 +1,134 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 17.5
+-- Dumped by pg_dump version 17.5
+
+-- Started on 2025-08-12 13:44:48
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 218 (class 1259 OID 16393)
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    username text NOT NULL,
+    email text NOT NULL,
+    password text NOT NULL
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- TOC entry 217 (class 1259 OID 16392)
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.users_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.users_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 4901 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- TOC entry 4742 (class 2604 OID 16396)
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- TOC entry 4895 (class 0 OID 16393)
+-- Dependencies: 218
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (id, username, email, password) FROM stdin;
+17	parsa	parsa@info.com	$2b$10$2OlcBzcKT5WYXaJVWLUpZO9SxsFg60KHInQeRT/HPNT03VwAAVvO6
+18	john	john@info.com	$2b$10$H1.YtpA2580GNnSH7XdbX.SA5ZXiBBCy0kiomBhR3nYP3lBuhVdKi
+20	sara	sara@info.com	$2b$10$P7gCQ/paX4OPIbt3h2ZL9.b62S/x6tkmbmyocNpCcPD03Ge1GGEBK
+21	bill	bill@info.com	$2b$10$e46o36mQ3f4MgoulyVIa5uAmeIB9C2yzRBmhV/b4ME8e1nutdW76y
+23			$2b$10$0g4xGXEu2LHGKRU7kVfYAOGs9S6p12IThnC6gyZMRaIQmIOHpsVHa
+42	frank	frank@info.com	$2b$10$WmulDIrQIERLvTDxTEQXn.ums9656bXWdIu/zlfZ2hgOJ5jElKffm
+44	janet	janet@info.com	$2b$10$XvsgcliWVPIOZeXgCp3fOOukcLpCVgWaksvqUmbbvCTmIbvpAgSp.
+46	jack	jack@info.com	$2b$10$4bVZ20X7D2znlnwspHycTuKqjSkGDDfAFVP1dxFzgwbkG4bC2Qj.a
+48	rose	rose@info.com	$2b$10$9w7Y6pN3rVJq7MnmTolffOBeeByTHfGaH3Qynj0rPsxxsyansxXjG
+\.
+
+
+--
+-- TOC entry 4902 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 49, true);
+
+
+--
+-- TOC entry 4744 (class 2606 OID 16404)
+-- Name: users users_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_email_key UNIQUE (email);
+
+
+--
+-- TOC entry 4746 (class 2606 OID 16400)
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4748 (class 2606 OID 16402)
+-- Name: users users_username_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_username_key UNIQUE (username);
+
+
+-- Completed on 2025-08-12 13:44:48
+
+--
+-- PostgreSQL database dump complete
+--
+
